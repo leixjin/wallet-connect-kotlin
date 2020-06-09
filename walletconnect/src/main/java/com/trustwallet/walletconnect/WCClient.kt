@@ -218,6 +218,16 @@ open class WCClient (
         return encryptAndSend(gson.toJson(response))
     }
 
+    /// 自己额外添加的方法，主要是为了 OK 钱包使用
+    fun <T>sendCustomRequest(id: Long, method: WCMethod, params: T): Boolean {
+        val request = JsonRpcRequest(
+            id = id,
+            method = method,
+            params = params
+        )
+        return encryptAndSend(gson.toJson(request))
+    }
+
     private fun decryptMessage(text: String): String {
         val message = gson.fromJson<WCSocketMessage>(text)
         val encrypted = gson.fromJson<WCEncryptionPayload>(message.payload)
@@ -328,7 +338,7 @@ open class WCClient (
             }
         }
     }
-    
+
     private fun subscribe(topic: String): Boolean {
         val message = WCSocketMessage(
             topic = topic,
