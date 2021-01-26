@@ -36,6 +36,12 @@ enum class WCMethod {
     @SerializedName("trust_signTransaction")
     SIGN_TRANSACTION,
 
+    @SerializedName("okt_signTransaction")
+    OKT_SIGN_TRANSACTION,
+
+    @SerializedName("okt_sendTransaction")
+    OKT_SEND_TRANSACTION,
+
     @SerializedName("sendSign")
     OKWALLET_SEND_SIGN;
 }
